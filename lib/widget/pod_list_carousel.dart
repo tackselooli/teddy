@@ -1,10 +1,32 @@
 import 'package:flutter/material.dart';
 import '../models/models.dart';
 class PodListCarousel extends StatelessWidget {
+
+  double heightContainer;
+  double w1;
+  double h1;
+  String img;
+  String txt;
+  PodListCarousel({this.heightContainer, this.w1, this.h1, this.img , this.txt});
   @override
   Widget build(BuildContext context) {
+    checkImage(String image) {
+      if (image == "img1"){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+    checkTxt (String text){
+      if (text == "txt1"){
+        return true;
+      }else{
+        return false;
+      }
+    }
     return Container(
-      height: 120,
+      height: heightContainer,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         reverse: true,
@@ -16,19 +38,22 @@ class PodListCarousel extends StatelessWidget {
             child: Stack(
               children: [
                 Container(
-                  width: 122,
-                  height: 100,
+                  width: w1,
+                  height: h1,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.0),
                     color: Colors.black,
                     image: DecorationImage(
-                        image: AssetImage(pood.podImgUrl),
+                        image: AssetImage(
+                          checkImage(img) ? pood.podImgUrl : pood.tutImgUrl
+                        ),
                         fit: BoxFit.cover),
                   ),
                 ),
                 Positioned(
                   bottom: 5,
                   left: 20,
+                  right: 20,
                   child: Container(
                     height: 50,
                     width: 80,
@@ -53,9 +78,8 @@ class PodListCarousel extends StatelessWidget {
                         alignment: WrapAlignment.center,
                         children: [
                           Text(
-                            pood.namePod,
+                            checkTxt(txt) ? pood.namePod : pood.tutTitle,
                             style: TextStyle(
-                                fontFamily: "Font1",
                                 fontSize: 15),
                           ),
                         ],

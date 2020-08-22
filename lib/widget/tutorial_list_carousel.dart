@@ -57,7 +57,6 @@ class TutorialListCarousel extends StatelessWidget {
                           Text(
                             pood.tutTitle,
                             style: TextStyle(
-                                fontFamily: "Font1",
                                 fontSize: 15),
                           ),
                         ],

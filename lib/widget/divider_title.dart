@@ -23,7 +23,6 @@ class DividerTitle extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                fontFamily: "Font1",
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 24,

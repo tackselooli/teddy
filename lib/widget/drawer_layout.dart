@@ -29,10 +29,10 @@ class DrawerLayout extends StatelessWidget {
                           Text(
                             'نهال برومند',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0,
-                                letterSpacing: -2,
-                                fontFamily: "Font1"),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
+                              letterSpacing: -2,
+                            ),
                           ),
                           Text(
                             'ادمین',
@@ -40,7 +40,6 @@ class DrawerLayout extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                               fontSize: 15.0,
                               letterSpacing: -2,
-                              fontFamily: "Font1",
                             ),
                           ),
                         ],
@@ -58,60 +57,80 @@ class DrawerLayout extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 80.0,),
+                  SizedBox(
+                    height: 80.0,
+                  ),
                   Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        DividerLine(indent: 50,),
+                        DividerLine(
+                          indent: 50,
+                        ),
                         DrawerItem(
                           text: 'عنوان',
                           onPressed: () => print('12'),
                           icon: Icons.notifications_active,
                         ),
-                        DividerLine(indent: 50,),
+                        DividerLine(
+                          indent: 50,
+                        ),
                         DrawerItem(
                           text: 'لیست کارهای من',
                           onPressed: () => print('12'),
                           icon: Icons.library_books,
                         ),
-                        DividerLine(indent: 50,),
+                        DividerLine(
+                          indent: 50,
+                        ),
                         DrawerItem(
                           text: 'گردونه شانس',
                           onPressed: () => print('12'),
                           icon: Icons.rate_review,
                         ),
-                        DividerLine(indent: 100,),
+                        DividerLine(
+                          indent: 100,
+                        ),
                         DrawerItem(
                           text: 'درباره ما',
                           onPressed: () => print('12'),
                           icon: Icons.info_outline,
                         ),
-                        DividerLine(indent: 100,),
+                        DividerLine(
+                          indent: 100,
+                        ),
                         DrawerItem(
                           text: 'سوالات متداول',
                           onPressed: () => print('12'),
                           icon: Icons.event_note,
                         ),
-                        DividerLine(indent: 100,),
+                        DividerLine(
+                          indent: 100,
+                        ),
                         DrawerItem(
                           text: 'تماس با ما',
                           onPressed: () => print('12'),
                           icon: Icons.contact_phone,
                         ),
-                        DividerLine(indent: 100,),
+                        DividerLine(
+                          indent: 100,
+                        ),
                         DrawerItem(
                           text: 'تنظیمات',
                           onPressed: () => print('12'),
                           icon: Icons.settings,
                         ),
-                        DividerLine(indent: 100,),
+                        DividerLine(
+                          indent: 100,
+                        ),
                         DrawerItem(
                           text: 'خروج',
                           onPressed: () => print('12'),
                           icon: Icons.exit_to_app,
                         ),
-                        DividerLine(indent: 100,),
+                        DividerLine(
+                          indent: 100,
+                        ),
                       ],
                     ),
                   ),
@@ -144,3 +163,52 @@ class _DrawerClipper extends CustomClipper<Path> {
 }
 
 
+
+class DrawerItem extends StatelessWidget {
+  final String text;
+  final Function onPressed;
+  final IconData icon;
+
+  const DrawerItem({this.text, this.onPressed, this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: FlatButton(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              text,
+              textDirection: TextDirection.rtl,
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(width: 15,),
+            Icon(icon, color: Colors.black87,),
+          ],
+        ),
+        onPressed: onPressed,
+      ),
+    );
+  }
+}
+
+
+class DividerLine extends StatelessWidget {
+  final double indent;
+
+  const DividerLine({this.indent});
+  @override
+  Widget build(BuildContext context) {
+    return Divider(
+      color: Colors.black26,
+      thickness: 1,
+      endIndent: 10,
+      indent: indent,
+      height: 3,
+    );
+  }
+}

@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xFF618BF7),
         accentColor: Color(0xFF393089),
+        fontFamily: "Font1"
       ),
       home: HomeScreen(
       ),

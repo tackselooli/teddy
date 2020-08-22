@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData deviceInfo = MediaQuery.of(context);
@@ -78,7 +79,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               size: 35.0,
                               color: Theme.of(context).accentColor,
                             ),
-                              onPressed: () => scaffoldKey.currentState.openEndDrawer(),
+                            onPressed: () =>
+                                scaffoldKey.currentState.openEndDrawer(),
                           ),
                         ],
                       ),
@@ -113,7 +115,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontSize: 25.0,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
-                                fontFamily: "Font1",
                                 textBaseline: TextBaseline.alphabetic,
                               ),
                               hintText: 'جستجو',
@@ -132,30 +133,23 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Color(0xFFF5F5F5),
                           borderRadius: BorderRadius.circular(7.0),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            CardAvatar(
-                              icon: Icons.people,
-                              text: 'همراهم شو',
-                              color: Color(0xFF7CCEC8),
-                            ),
-                            CardAvatar(
-                              icon: Icons.card_giftcard,
-                              text: 'هدیه بگیر',
-                              color: Color(0xFF46B4D5),
-                            ),
-                            CardAvatar(
-                              icon: Icons.event_note,
-                              text: 'کاراتو بساز',
-                              color: Color(0xFF5FD4E0),
-                            ),
-                            CardAvatar(
-                              icon: Icons.message,
-                              text: 'تجربتو بگو',
-                              color: Color(0xFF197DA5),
-                            ),
-                          ],
+                        child: ListView.builder(
+                          itemCount: cardListData.length,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, int index) {
+                            CardData card = cardListData[index];
+                            return Container(
+                              alignment: Alignment.center,
+                              margin: EdgeInsets.all(4),
+                              padding: EdgeInsets.symmetric(horizontal: 5),
+                              child: CardAvatar(
+                                icon: card.icon,
+                                text: card.text,
+                                color: card.color,
+                              ),
+                            );
+                          },
                         ),
                       ),
                       Padding(
@@ -169,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius: BorderRadius.circular(8.0),
                             image: DecorationImage(
                                 image: AssetImage("images/asset-21.png"),
-                                fit: BoxFit.cover ,
+                                fit: BoxFit.cover,
                                 scale: 15,
                                 alignment: Alignment.centerRight),
                           ),
@@ -181,7 +175,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Text(
                                   'سنجش\n سلامتی',
                                   style: TextStyle(
-                                      fontFamily: "Font1",
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 28.0),
@@ -194,14 +187,26 @@ class _HomeScreenState extends State<HomeScreen> {
                       DividerTitle(
                         title: 'خانه آرام من',
                       ),
-                      PodListCarousel(),
+                      PodListCarousel(
+                        heightContainer: 120.0,
+                        h1: 100,
+                        w1: 122,
+                        img: "img1",
+                        txt: "txt1",
+                      ),
                       SizedBox(
                         height: 40.0,
                       ),
                       DividerTitle(
                         title: 'ماهر شو',
                       ),
-                      TutorialListCarousel(),
+                      PodListCarousel(
+                        heightContainer: 210.0,
+                        h1: 180,
+                        w1: 182,
+                        img: "img2",
+                        txt: "txt2",
+                      ),
                       SizedBox(
                         height: 40.0,
                         child: Container(
@@ -235,7 +240,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               flex: 6,
                             ),
-                            SizedBox(width: 26.0,),
+                            SizedBox(
+                              width: 26.0,
+                            ),
                             Flexible(
                               child: Column(
                                 children: [
@@ -244,21 +251,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
                                         image: DecorationImage(
-                                          image:
-                                          AssetImage("images/AdobeStock_65935647.png"),
+                                          image: AssetImage(
+                                              "images/AdobeStock_65935647.png"),
                                           fit: BoxFit.cover,
                                         ),
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 15,),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
                                   Expanded(
                                     child: Container(
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
                                         image: DecorationImage(
-                                          image:
-                                          AssetImage("images/AdobeStock_122073339.png"),
+                                          image: AssetImage(
+                                              "images/AdobeStock_122073339.png"),
                                           fit: BoxFit.cover,
                                         ),
                                       ),
