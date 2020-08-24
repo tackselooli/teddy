@@ -11,11 +11,14 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Travel UI',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Color(0xFF618BF7),
-        accentColor: Color(0xFF393089),
-        fontFamily: "Font1"
+          primaryColor: Color(0xFF618BF7),
+          accentColor: Color(0xFF393089),
+          fontFamily: "Font1"
       ),
-      home: HomeScreen(
+      home: Directionality(
+        textDirection: TextDirection.rtl,
+        child: UserScreen(
+        ),
       ),
     );
   }

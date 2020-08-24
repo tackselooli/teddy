@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     MediaQueryData deviceInfo = MediaQuery.of(context);
     return Scaffold(
       key: scaffoldKey,
-      endDrawer: DrawerLayout(),
+      drawer: DrawerLayout(),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
@@ -28,11 +28,6 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Stack(
               children: [
-                Container(
-                  height: 50,
-                  width: deviceInfo.size.width,
-                  color: Colors.black,
-                ),
                 Column(
                   children: [
                     Container(
@@ -40,10 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: deviceInfo.size.height * 1.4 / 3,
                       decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(50.0),
-                          topLeft: Radius.circular(50.0),
-                        ),
                         image: DecorationImage(
                             image: AssetImage("images/3541142.png"),
                             scale: 0.90),
@@ -52,15 +43,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 40.0),
+                  padding: EdgeInsets.only(top: 40.0),
                   child: Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          FlatButton(
+                            child: Icon(
+                              Icons.view_agenda,
+                              size: 35.0,
+                              color: Theme.of(context).accentColor,
+                            ),
+                            onPressed: () =>
+                                scaffoldKey.currentState.openDrawer(),
+                          ),
                           Transform.rotate(
-                            angle: -90 * math.pi / 180,
+                            angle: 90 * math.pi / 180,
                             child: FlatButton(
                               child: Icon(
                                 Icons.label,
@@ -72,15 +71,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: Colors.black12,
                               padding: EdgeInsets.all(10.0),
                             ),
-                          ),
-                          FlatButton(
-                            child: Icon(
-                              Icons.view_agenda,
-                              size: 35.0,
-                              color: Theme.of(context).accentColor,
-                            ),
-                            onPressed: () =>
-                                scaffoldKey.currentState.openEndDrawer(),
                           ),
                         ],
                       ),
@@ -124,33 +114,30 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.only(top: 11.0),
-                        alignment: Alignment.center,
-                        height: 120,
-                        width: deviceInfo.size.width - 50,
-                        decoration: BoxDecoration(
-                          border: Border.all(width: 0.4),
-                          color: Color(0xFFF5F5F5),
-                          borderRadius: BorderRadius.circular(7.0),
-                        ),
-                        child: ListView.builder(
-                          itemCount: cardListData.length,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (BuildContext context, int index) {
-                            CardData card = cardListData[index];
-                            return Container(
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.all(4),
-                              padding: EdgeInsets.symmetric(horizontal: 5),
-                              child: CardAvatar(
-                                icon: card.icon,
-                                text: card.text,
-                                color: card.color,
-                              ),
-                            );
-                          },
-                        ),
+                          padding: EdgeInsets.all(12),
+                          alignment: Alignment.center,
+                          width: deviceInfo.size.width*0.9,
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 0.4),
+                            color: Color(0xFFF5F5F5),
+                            borderRadius: BorderRadius.circular(7.0),
+                          ),
+                          child: Row(
+                            children: List.generate(4, (index) {
+                              CardData card = cardListData[index];
+                              return Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  margin: EdgeInsets.all(4),
+                                  child: CardAvatar(
+                                    icon: card.icon,
+                                    text: card.text,
+                                    color: card.color,
+                                  ),
+                                ),
+                              );
+                            }),
+                          )
                       ),
                       Padding(
                         padding: EdgeInsets.only(
@@ -187,33 +174,43 @@ class _HomeScreenState extends State<HomeScreen> {
                       DividerTitle(
                         title: 'خانه آرام من',
                       ),
-                      PodListCarousel(
-                        heightContainer: 120.0,
-                        h1: 100,
-                        w1: 122,
-                        img: "img1",
-                        txt: "txt1",
-                      ),
-                      SizedBox(
-                        height: 40.0,
+                      Container(
+                          color: Color(0xFFF5F5F5),
+                          width: double.maxFinite,
+                          height: deviceInfo.size.width/2.8,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: List.generate(6, (index) {
+                              return Container(
+                                width: deviceInfo.size.width/2.5,
+                                child: PodcastWidget(),
+                              );
+                            }),
+                          )),
+                      Container(
+                        height: 20.0,
+                        width: double.infinity,
+                        color: Color(0xFFF5F5F5),
                       ),
                       DividerTitle(
                         title: 'ماهر شو',
                       ),
-                      PodListCarousel(
-                        heightContainer: 210.0,
-                        h1: 180,
-                        w1: 182,
-                        img: "img2",
-                        txt: "txt2",
-                      ),
-                      SizedBox(
-                        height: 40.0,
-                        child: Container(
-                          height: 40.0,
-                          width: double.infinity,
+                      Container(
                           color: Color(0xFFF5F5F5),
-                        ),
+                          height: deviceInfo.size.width/2,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: List.generate(6, (index) {
+                              return Container(
+                                height: deviceInfo.size.width/2,
+                                child: PodcastWidget(),
+                              );
+                            }),
+                          )),
+                      Container(
+                        height: 20.0,
+                        width: double.infinity,
+                        color: Color(0xFFF5F5F5),
                       ),
                       DividerTitle(
                         title: 'خودتو بشناس',
@@ -225,24 +222,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: double.infinity,
                         child: Row(
                           children: [
-                            Flexible(
-                              child: Container(
-                                width: 190.0,
-                                height: 220.0,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(14),
-                                  image: DecorationImage(
-                                    image:
-                                        AssetImage("images/AdobeStock_-9.png"),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              flex: 6,
-                            ),
-                            SizedBox(
-                              width: 26.0,
-                            ),
                             Flexible(
                               child: Column(
                                 children: [
@@ -277,6 +256,25 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               flex: 4,
                             ),
+                            SizedBox(
+                              width: 26.0,
+                            ),
+                            Flexible(
+                              child: Container(
+                                width: 190.0,
+                                height: 220.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(14),
+                                  image: DecorationImage(
+                                    image:
+                                    AssetImage("images/AdobeStock_-9.png"),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              flex: 6,
+                            ),
+
                           ],
                         ),
                       ),

@@ -8,19 +8,18 @@ class DrawerLayout extends StatelessWidget {
     return ClipPath(
       clipper: _DrawerClipper(),
       child: Opacity(
-        opacity: 0.70,
+        opacity: 0.90,
         child: Drawer(
           child: SingleChildScrollView(
             child: Container(
               padding: EdgeInsets.only(top: 50.0, right: 14.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Column(
-                        textDirection: TextDirection.rtl,
                         textBaseline: TextBaseline.alphabetic,
                         children: [
                           SizedBox(
@@ -62,7 +61,7 @@ class DrawerLayout extends StatelessWidget {
                   ),
                   Container(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         DividerLine(
                           indent: 50,
@@ -154,7 +153,6 @@ class _DrawerClipper extends CustomClipper<Path> {
     path.lineTo(size.width, size.height);
     path.lineTo(size.width, 0);
     path.close();
-
     return path;
   }
 
@@ -176,18 +174,17 @@ class DrawerItem extends StatelessWidget {
     return Container(
       child: FlatButton(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Icon(icon, color: Colors.black87,),
+            SizedBox(width: 15,),
             Text(
               text,
-              textDirection: TextDirection.rtl,
               style: TextStyle(
                   fontSize: 20,
                   color: Colors.black,
                   fontWeight: FontWeight.bold),
             ),
-            SizedBox(width: 15,),
-            Icon(icon, color: Colors.black87,),
           ],
         ),
         onPressed: onPressed,
@@ -206,8 +203,8 @@ class DividerLine extends StatelessWidget {
     return Divider(
       color: Colors.black26,
       thickness: 1,
-      endIndent: 10,
-      indent: indent,
+      endIndent: indent,
+      indent: 10,
       height: 3,
     );
   }
