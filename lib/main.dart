@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whynot/screens/registry_screen.dart';
 import './screens/screens.dart';
 
 void main() => runApp(MyApp());
@@ -15,9 +16,10 @@ class MyApp extends StatelessWidget {
           accentColor: Color(0xFF393089),
           fontFamily: "Font1"
       ),
+
       home: Directionality(
         textDirection: TextDirection.rtl,
-        child: UserScreen(
+        child: RegistryScreen(
         ),
       ),
     );

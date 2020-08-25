@@ -86,11 +86,6 @@ class UserScreen extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    Container(
-                      height: deviceInfo.size.height * 1 / 10,
-                      width: deviceInfo.size.width,
-                      color: Colors.black,
-                    ),
                     Stack(
                       children: [
                         ClipPath(
@@ -104,10 +99,6 @@ class UserScreen extends StatelessWidget {
                                 end: Alignment.topRight,
                                 colors: _colors,
                                 stops: _stops,
-                              ),
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(50.0),
-                                topLeft: Radius.circular(50.0),
                               ),
                             ),
                           ),
